@@ -1,0 +1,22 @@
+server:
+  port: 8180
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins:
+            - "http://localhost:8080"
+            - "http://localhost:8082"
+            allowed-headers: "*"
+            allowed-methods: "*"
+            max-age: 3600
+      discovery:
+        locator:
+          enabled: true
+product-service:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.southwind.configuration.NacosWeightedRule
